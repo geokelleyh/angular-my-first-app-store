@@ -1,0 +1,53 @@
+<!-- Step 1   In the product-list folder, open the template file product-list class="component html"
+
+Step 2  Modify the product list template to display a list of product names - Each product in the list displays the same one, one after another on the page.  To iterate over the predifined list of products put the "*ngFor directive on a div as follows <div *ngFor="let product of products">
+</div>" -->
+<!--
+Step 3  To display the names of the products use the interpolation syntax {{}} in the <div> element and add an <h3> tag for the property's name -->
+<!-- Step 4 To make each product name a link to product details, add the <a> element and set its title to be the product's name by using the property binding [ ] syntax, as follows: -->
+<!--
+Step 5 Add the product descriptions. On the <p> element, use an *ngIf directive so that Angular only creates the <p> element if the current product has a description.
+Step 6 Add a button so users can share a product with friends. Bind the button's click event to the share() method (in product-list.component.ts). Event binding uses a set of parentheses, ( ), around the event, as in the following <button> element: -->
+
+<!-- The app now has a product list and sharing feature. In the process, you've learned to use five common features of Angular's template syntax:
+
+    *ngFor
+    *ngIf
+    Interpolation {{ }}
+    Property binding [ ]
+    Event binding () -->
+
+<!-- Step 6 Modifications done after Product-alerts section:
+   Display the new product alert component as a child of the product list.
+   Open product-list.component.html.
+   To include the new component, use its selector, app-product-alert, as you would an HTML element.
+   Pass the current product as input to the component using property binding. -->
+
+   <!-- Go to product-alerts.component.ts -->
+
+<!-- Step 7 Finally, update the product list component to receive output from the product alerts component.
+In product-list.component.html, bind the app-product-alerts component (which is what displays the "Notify Me" button) to the onNotify() method of the product list component. -->
+
+
+
+
+
+<h2>Products</h2>
+<div *ngFor="let product of products">
+  <h3>
+    <a [title]="product.name + ' details'">
+      {{ product.name }}
+    </a>
+  </h3>
+  <p *ngIf="product.description">Description: {{ product.description }}</p>
+  <button (click)="share()">
+    Share
+  </button>
+
+  <app-product-alerts
+  [product]="product"
+  (notify)="onNotify()"> <!--Step 7-->
+
+
+  </app-product-alerts> <!--Step 6-->
+</div>
